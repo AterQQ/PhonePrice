@@ -84,7 +84,7 @@ ann_model = build_model(X_train_split.shape[1])
 early_stopping = EarlyStopping(monitor='val_loss', patience=5)
 
 # model summary
-
+ann_model.summary()
 
 # Train the model
 history = ann_model.fit(
