@@ -70,6 +70,7 @@ def build_model(input_shape):
         Dense(16, activation='tanh', input_shape=(input_shape,)),
         Dense(32, activation='gelu'),
         Dense(32, activation='relu'),
+
         #Dropout(0.1),
         Dense(1)  # Output layer for regression
     ])
