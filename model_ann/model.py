@@ -14,7 +14,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from packages.transformers import LowerCaseTransformer
 
 # Load the dataset
-file_path = '../data/cleaned_all_phones.csv'  # Replace with your file path
+file_path = '../data/cleaned_all_phones.csv'
 phone_data = pd.read_csv(file_path)
 
 # Dropping non-relevant features
@@ -62,15 +62,17 @@ X_train_transformed = X_train_transformed.toarray() if hasattr(X_train_transform
 X_test_transformed = X_test_transformed.toarray() if hasattr(X_test_transformed, "toarray") else X_test_transformed
 
 # Manual train-validation split
-X_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train_transformed, y_train, test_size=0.2, random_state=0)
-
+X_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_train_transformed, y_train, test_size=0.2, random_state=1)
+print(X_train_split.shape)
+print(X_val_split.shape)
+print(y_train_split.shape)
+print(y_val_split.shape)
 # Build the ANN model
 def build_model(input_shape):
     model = Sequential([
-        Dense(16, activation='tanh', input_shape=(input_shape,)),
-        Dense(32, activation='gelu'),
-        Dense(32, activation='relu'),
-
+        Dense(37, activation='tanh', input_shape=(input_shape,)),
+        Dense(74, activation='gelu'),
+        #Dense(74, activation='relu'),
         #Dropout(0.1),
         Dense(1)  # Output layer for regression
     ])
