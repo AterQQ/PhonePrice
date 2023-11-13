@@ -67,21 +67,21 @@ X_train_split, X_val_split, y_train_split, y_val_split = train_test_split(X_trai
 # Build the ANN model
 def build_model(input_shape):
     model = Sequential([
-        Dense(128, activation='relu', input_shape=(input_shape,)),
-        Dropout(0.1),
-        Dense(64, activation='relu'),
-        Dropout(0.1),
+        Dense(16, activation='tanh', input_shape=(input_shape,)),
+        Dense(32, activation='gelu'),
+        Dense(32, activation='relu'),
+        #Dropout(0.1),
         Dense(1)  # Output layer for regression
     ])
 
-    model.compile(optimizer= 'Adamax', loss='mean_squared_error')
+    model.compile(optimizer= 'adam', loss='mean_squared_error')
     return model
 
 # Create the ANN model
 ann_model = build_model(X_train_split.shape[1])
 
 # Early stopping to prevent overfitting
-early_stopping = EarlyStopping(monitor='val_loss', patience=5)
+early_stopping = EarlyStopping(monitor='val_loss', patience=10)
 
 # model summary
 ann_model.summary()
@@ -90,9 +90,9 @@ ann_model.summary()
 history = ann_model.fit(
     X_train_split, y_train_split,
     validation_data=(X_val_split, y_val_split),
-    epochs=100,
+    epochs=1000,
     callbacks=[early_stopping],
-    batch_size=32
+    batch_size=16
 )
 
 # Evaluate the model on the test data

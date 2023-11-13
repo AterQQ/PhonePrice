@@ -47,19 +47,19 @@ def get_user_input():
 def get_default_input():
     # Returns a predefined set of input values
     return {
-        'inches': [6.7],
+        'inches': [7.1],
         'ram(GB)': [6],
-        'weight(g)': [254.0],
-        'storage(GB)': [512],
+        'weight(g)': [325.0],
+        'storage(GB)': [256],
         'brand': ['apple'],
         'video_720p': [True],
         'video_1080p': [True],
-        'video_4K': [True],
+        'video_4K': [False],
         'video_8K': [False],
         'video_30fps': [True],
         'video_60fps': [True],
         'video_120fps': [True],
-        'video_240fps': [True],
+        'video_240fps': [False],
         'video_480fps': [False],
         'video_960fps': [False]
     }
