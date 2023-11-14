@@ -72,7 +72,7 @@ def build_model(input_shape):
     model = Sequential([
         Dense(37, activation='tanh', input_shape=(input_shape,)),
         Dense(74, activation='gelu'),
-        #Dense(74, activation='relu'),
+        Dense(74, activation='relu'),
         #Dropout(0.1),
         Dense(1)  # Output layer for regression
     ])
@@ -95,7 +95,7 @@ history = ann_model.fit(
     validation_data=(X_val_split, y_val_split),
     epochs=1000,
     callbacks=[early_stopping],
-    batch_size=16
+    batch_size=128
 )
 
 # Evaluate the model on the test data
