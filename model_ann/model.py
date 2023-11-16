@@ -111,6 +111,46 @@ plt.ylabel('Loss')
 plt.xlabel('Epoch')
 plt.legend()
 plt.savefig('./ann_loss.png')
+# Evaluate the model on the test data
+ann_mse = ann_model.evaluate(X_test_transformed, y_test, verbose=0)
+print("Mean Squared Error on Test Data:", ann_mse)
+
+# Generate predictions
+y_pred = ann_model.predict(X_test_transformed)
+
+# Scatter plot of Predictions vs Actual
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, y_pred, alpha=0.5)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=2)  # Line for perfect predictions
+plt.xlabel('Actual')
+plt.ylabel('Predicted')
+plt.title('Actual vs. Predicted Values')
+plt.savefig('./ann_scatter.png')
+# plt.show()
+
+
+
+# Residual Plot
+residuals = y_test - y_pred.flatten()  # Flatten y_pred if it's not already a 1D array
+plt.figure(figsize=(10, 6))
+plt.scatter(y_pred, residuals, alpha=0.5)
+plt.hlines(y=0, xmin=y_pred.min(), xmax=y_pred.max(), colors='k', linestyles='--')
+plt.xlabel('Predicted')
+plt.ylabel('Residuals')
+plt.title('Residuals vs. Predicted Values')
+plt.savefig('./ann_residual.png')
+# plt.show()
+
+
+# Plotting training and validation loss
+plt.figure(figsize=(10, 6))
+plt.plot(history.history['loss'], label='Training Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.title('Model Loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend()
+plt.savefig('./ann_loss.png')
 
 # Save the model
 model_save_path = "./saved_ann"
@@ -119,3 +159,5 @@ ann_model.save(model_save_path)
 # Save the preprocessor
 preprocessor_save_path = "./saved_preprocessor.pkl"
 joblib.dump(preprocessor, preprocessor_save_path)
+
+
