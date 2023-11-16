@@ -5,8 +5,8 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the saved model and scaler
-model = joblib.load('../tylers_best_model_LR/saved_log_reg_model/model.pkl')
-scaler = joblib.load('../tylers_best_model_LR/saved_log_reg_model/scaler.pkl')
+model = joblib.load('../tylers_best_model_Log_reg/saved_log_reg_model/model.pkl')
+scaler = joblib.load('../tylers_best_model_Log_reg/saved_log_reg_model/scaler.pkl')
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
