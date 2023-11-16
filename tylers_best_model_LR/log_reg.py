@@ -28,7 +28,7 @@ y = df['price_range']
 
 # Splitting the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
+print(X_train.shape)
 # Feature scaling
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
@@ -43,6 +43,10 @@ print("Logistic Regression Accuracy:", accuracy_score(y_test, log_reg_pred))
 print(confusion_matrix(y_test, log_reg_pred))
 print(classification_report(y_test, log_reg_pred))
 
-#save the model
+# Save the model
 joblib.dump(log_reg, './saved_log_reg_model/model.pkl')
 print("Model dumped!")
+
+# Save the scaler
+joblib.dump(scaler, './saved_log_reg_model/scaler.pkl')
+print("Scaler dumped!")
