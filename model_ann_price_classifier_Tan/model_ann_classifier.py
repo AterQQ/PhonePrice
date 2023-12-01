@@ -56,9 +56,8 @@ X_train_final, X_val, y_train_final, y_val = train_test_split(
 
 # Building the ANN for Classification
 model = Sequential([
-    Dense(128, activation='relu', input_shape=(X_train_final.shape[1],)),
-    Dropout(0.2),
-    Dense(64, activation='relu'),
+    Dense(8, activation='tanh', input_shape=(X_train_final.shape[1],)),
+    Dense(16, activation='relu'),
     Dense(y_train.shape[1], activation='softmax')  # Output layer for the number of categories
 ])
 
