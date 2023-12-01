@@ -1,137 +1,324 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Mobile Price Prediction</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0 auto;
-            max-width: 600px;
-            padding: 20px;
-        }
-        .form-group {
-            margin-bottom: 10px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        .submit-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .submit-button:hover {
-            background-color: #45a049;
-        }
-        h3 {
-            color: #4CAF50;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@PhonePrice</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
 <body>
-    <h2>Mobile Price Prediction</h2>
-    <form method="POST">
-        <div class="form-group">
-            <label for="battery_power">Battery Power (mAh)</label>
-            <input type="number" name="battery_power" id="battery_power" placeholder="e.g., 1500" required>
+    <nav class="navbar">
+        <div id="logo">
+            @PhonePrice
         </div>
-        <div class="form-group">
-            <label for="blue">Bluetooth (0 = No, 1 = Yes)</label>
-            <input type="number" name="blue" id="blue" placeholder="Enter 0 or 1" required>
-        </div>
-        <div class="form-group">
-            <label for="clock_speed">Clock Speed (GHz)</label>
-            <input type="number" step="any" name="clock_speed" id="clock_speed" placeholder="e.g., 2.5" required>
-        </div>
-        <div class="form-group">
-            <label for="dual_sim">Dual SIM (0 = No, 1 = Yes)</label>
-            <input type="number" name="dual_sim" id="dual_sim" placeholder="Enter 0 or 1" required>
-        </div>
-        <div class="form-group">
-            <label for="fc">Front Camera (Megapixels)</label>
-            <input type="number" name="fc" id="fc" placeholder="e.g., 5" required>
-        </div>
-        <div class="form-group">
-            <label for="four_g">4G Support (0 = No, 1 = Yes)</label>
-            <input type="number" name="four_g" id="four_g" placeholder="Enter 0 or 1" required>
-        </div>
-        <div class="form-group">
-            <label for="int_memory">Internal Memory (GB)</label>
-            <input type="number" name="int_memory" id="int_memory" placeholder="e.g., 8" required>
-        </div>
-        <div class="form-group">
-            <label for="m_dep">Mobile Depth (cm)</label>
-            <input type="number" step="any" name="m_dep" id="m_dep" placeholder="e.g., 0.5" required>
-        </div>
-        <div class="form-group">
-            <label for="mobile_wt">Mobile Weight (grams)</label>
-            <input type="number" name="mobile_wt" id="mobile_wt" placeholder="e.g., 150" required>
-        </div>
-        <div class="form-group">
-            <label for="n_cores">Number of Cores</label>
-            <input type="number" name="n_cores" id="n_cores" placeholder="e.g., 4" required>
-        </div>
-        <div class="form-group">
-            <label for="pc">Primary Camera (Megapixels)</label>
-            <input type="number" name="pc" id="pc" placeholder="e.g., 12" required>
-        </div>
-        <div class="form-group">
-            <label for="px_height">Pixel Resolution Height</label>
-            <input type="number" name="px_height" id="px_height" placeholder="e.g., 1080" required>
-        </div>
-        <div class="form-group">
-            <label for="px_width">Pixel Resolution Width</label>
-            <input type="number" name="px_width" id="px_width" placeholder="e.g., 1920" required>
-        </div>
-        <div class="form-group">
-            <label for="ram">RAM (MB)</label>
-            <input type="number" name="ram" id="ram" placeholder="e.g., 4000" required>
-        </div>
-        <div class="form-group">
-            <label for="sc_h">Screen Height (cm)</label>
-            <input type="number" name="sc_h" id="sc_h" placeholder="e.g., 15" required>
-        </div>
-        <div class="form-group">
-            <label for="sc_w">Screen Width (cm)</label>
-            <input type="number" name="sc_w" id="sc_w" placeholder="e.g., 7" required>
-        </div>
-        <div class="form-group">
-            <label for="talk_time">Talk Time (hours)</label>
-            <input type="number" name="talk_time" id="talk_time" placeholder="e.g., 10" required>
-        </div>
-        <div class="form-group">
-            <label for="three_g">3G Support (0 = No, 1 = Yes)</label>
-            <input type="number" name="three_g" id="three_g" placeholder="Enter 0 or 1" required>
-        </div>
-        <div class="form-group">
-            <label for="touch_screen">Touch Screen (0 = No, 1 = Yes)</label>
-            <input type="number" name="touch_screen" id="touch_screen" placeholder="Enter 0 or 1" required>
-        </div>
-        <div class="form-group">
-            <label for="wifi">Wi-Fi (0 = No, 1 = Yes)</label>
-            <input type="number" name="wifi" id="wifi" placeholder="Enter 0 or 1" required>
-        </div>
-        <input type="submit" value="Predict" class="submit-button">
-    </form>
+    </nav>
 
-    {% if prediction_result is not none %}
-        <h3>Prediction: {{ prediction_result }}</h3>
-        <p>
-            0 = Low Cost<br>
-            1 = Medium Cost<br>
-            2 = High Cost<br>
-            3 = Very High Cost
-        </p>
-    {% endif %}
+    <div class="container">
+        <div class="inner-container">
+            <div class="display-container">
+                <p>Model Interface</p>
+                <canvas></canvas>
+                <div class="prediction-container">
+                    <p>Price Prediction</p>
+                    {% if prediction_result is not none %}
+                        <p>{{ prediction_result }}</p>
+                    {% endif %}
+                    <button type="button" onclick="submitForm()">
+                        Predict
+                    </button>
+                </div>
+            </div>
+
+            <div class="param-container">
+                <form method="POST" id="inputForm">
+                    <div class="half-form">
+                        <div class="form-group">
+                            <label for="battery_power">
+                                Battery Power (mAH)
+                            </label>
+                            <br>
+                            <input type="range" 
+                                   name="battery_power"
+                                   id="battery_power"
+                                   min="0.0"
+                                   max="3000.0">
+                            
+                            <output for="battery_power" id="battery_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="clock_speed">
+                                Clock Speed (GHz)
+                            </label>
+                            <br>
+                            <input type="range" 
+                                   name="clock_speed"
+                                   id="clock_speed"
+                                   min="0.5"
+                                   max="6.0"
+                                   step="0.1">
+                            
+                            <output for="clock_speed" id="clock_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fc">
+                                Front Camera (Mpx)
+                            </label>
+                            <br>
+                            <input type="range"
+                                   name="fc"
+                                   id="fc"
+                                   min="0"
+                                   max="30">
+
+                            <output for="fc" id="fc_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pc">
+                                Primary Camera (Mpx)
+                            </label>
+                            <br>
+                            <input type="range"
+                                   name="pc"
+                                   id="pc"
+                                   min="0"
+                                   max="30">
+
+                            <output for="pc" id="pc_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="int_memory">
+                                Internal Memory (GB)
+                            </label>
+                            <br>
+                            <input type="range"
+                                   name="int_memory"
+                                   id="int_memory"
+                                   min="0"
+                                   max="256">
+
+                            <output for="int_memory" id="memory_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="n_cores">
+                                Number of Cores
+                            </label>
+                            <br>
+                            <input type="range"
+                                   name="n_cores"
+                                   id="n_cores"
+                                   min="1"
+                                   max="8">
+
+                            <output for="n_cores" id="cores_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ram">
+                                RAM (MB)
+                            </label>
+                            <br>
+                            <input type="range"
+                                   name="ram"
+                                   id="ram"
+                                   min="0"
+                                   max="5000">
+
+                            <output for="ram" id="ram_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-checkbox">
+                            <label for="blue">
+                                Bluetooth
+                            </label>
+                            <input type="checkbox"
+                                   name="blue"
+                                   id="blue">
+                        </div>
+
+                        <div class="form-checkbox">
+                            <label for="dual_sim">
+                                Dual SIM
+                            </label>
+                            <input type="checkbox"
+                                   name="dual_sim"
+                                   id="dual_sim">
+                        </div>
+
+                        <div class="form-checkbox">
+                            <label for="touch_screen">
+                                Touch Screen
+                            </label>
+                            <input type="checkbox"
+                                   name="touch_screen"
+                                   id="touch_screen">
+                        </div>
+                    </div>
+
+                    <div class="half-form">
+                        <div class="form-group">
+                            <label for="m_dep">
+                                Moblie Depth (cm)
+                            </label>
+                            <br>
+                            <input type="range" 
+                                   name="m_dep"
+                                   id="m_dep"
+                                   min="0.0"
+                                   max="1.0"
+                                   step="0.1">
+                            
+                            <output for="m_dep" id="m_dep_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mobile_wt">
+                                Mobile Weight
+                            </label>
+                            <br>
+                            <input type="range" 
+                                   name="mobile_wt"
+                                   id="mobile_wt"
+                                   min="80"
+                                   max="200">
+                            
+                            <output for="mobile_wt" id="mobile_wt_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="px_height">
+                                Resolution Height
+                            </label>
+                            <br>
+                            <input type="range" 
+                                   name="px_height"
+                                   id="px_height"
+                                   min="0"
+                                   max="2000">
+                            
+                            <output for="px_height" id="px_height_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="px_width">
+                                Resolution Width
+                            </label>
+                            <br>
+                            <input type="range"
+                                   name="px_width"
+                                   id="px_width"
+                                   min="0"
+                                   max="2000">
+
+                            <output for="px_width" id="px_width_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sc_h">
+                                Screen Height (cm)
+                            </label>
+                            <br>
+                            <input type="range"
+                                   name="sc_h"
+                                   id="sc_h"
+                                   min="0"
+                                   max="24">
+
+                            <output for="sc_h" id="sc_h_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="sc_w">
+                                Screen Weight (cm)
+                            </label>
+                            <br>
+                            <input type="range"
+                                   name="sc_w"
+                                   id="sc_w"
+                                   min="0"
+                                   max="20">
+
+                            <output for="sc_w" id="sc_w_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="talk_time">
+                                Talk Time (Hrs)
+                            </label>
+                            <br>
+                            <input type="range"
+                                   name="talk_time"
+                                   id="talk_time"
+                                   min="0"
+                                   max="20">
+
+                            <output for="talk_time" id="talk_output">
+                                10
+                            </output>
+                        </div>
+
+                        <div class="form-checkbox">
+                            <label for="three_g">
+                                3G Support
+                            </label>
+                            <input type="checkbox"
+                                   name="three_g"
+                                   id="three_g">
+                        </div>
+
+                        <div class="form-checkbox">
+                            <label for="four_g">
+                                4G Support
+                            </label>
+                            <input type="checkbox"
+                                   name="four_g"
+                                   id="four_g">
+                        </div>
+
+                        <div class="form-checkbox">
+                            <label for="wifi">
+                                Wi-Fi
+                            </label>
+                            <input type="checkbox"
+                                   name="wifi"
+                                   id="wifi">
+                        </div>
+                    </div>     
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/home.js')}}"></script>
 </body>
 </html>
