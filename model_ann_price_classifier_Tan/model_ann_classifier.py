@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.metrics import confusion_matrix, f1_score, classification_report
 import numpy as np
+import seaborn as sns
 # Load the dataset
 file_path = '../data/cleaned_all_phones.csv'
 phone_data = pd.read_csv(file_path)
@@ -108,6 +109,14 @@ cm = confusion_matrix(y_true, y_pred_classes)
 print("Confusion Matrix:")
 print(cm)
 
+
+# Plotting the confusion matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
+plt.title('Confusion Matrix for Logistic Regression Model')
+plt.xlabel('Predicted Label')
+plt.ylabel('True Label')
+plt.show()
 # F1 Score
 f1 = f1_score(y_true, y_pred_classes, average='weighted')
 print(f"F1 Score: {f1}")
