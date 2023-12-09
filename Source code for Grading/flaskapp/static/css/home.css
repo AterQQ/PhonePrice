@@ -1,0 +1,136 @@
+body {
+  margin: auto;
+  background-color: #2D3C64;
+  font-family: sans-serif;
+  color: white;
+}
+
+p {
+  text-align: center;
+}
+
+.navbar {
+  padding: 15px;
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+#logo {
+  font-size: 18px;
+  
+}
+
+.container {
+  display: flex;
+  margin-left: -20%;
+  margin-right: -20%;
+  justify-content: center;
+}
+
+.inner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+  background-color: #1E2741;
+  border-radius: 5%;
+}
+
+.display-container {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.prediction-container {
+  background-color: #253254;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  border-radius: 15px;
+}
+
+.param-container {
+  margin: -1%;
+  padding: 5%;
+  background-color: #253254;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+.param-container output {
+  background-color: #0C1B42;
+  padding: 2%;
+  padding-left: 6%;
+  padding-right: 6%;
+  border-radius: 10px;
+
+}
+
+.form-group {
+  margin-top: 7px;
+}
+
+.form-group input[type='range'] {
+  appearance: none;
+  background: white;
+  background-image: linear-gradient(#52F038, #52F038);
+  height: 5px;
+  width: 90%;
+  border-radius: 20px;
+}
+
+.form-group input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background: white;
+}
+
+.form-group input[type='range']::-moz-range-thumb {
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background: white;
+}
+
+.form-checkbox {
+  margin-top: 7px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 5px;
+}
+
+.form-checkbox input[type=checkbox] {
+  accent-color: #52F038;
+}
+
+form {
+  display: flex;
+}
+
+button {
+  text-align: center;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  background-color: #52F038;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  padding: 3%;
+  padding-left: 15%;
+  padding-right: 15%;
+  font-size: 18px;
+}
+
+button:hover {
+  opacity: 1;
+}
+
+
